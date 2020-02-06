@@ -4,7 +4,7 @@ open System
 open System.Net
 open System.IO
 open FSharp.Json
-open InoreaderFs.Authentication
+open InoreaderFs
 
 module UserInfo =
     type Response = {
@@ -18,9 +18,9 @@ module UserInfo =
         isMultiLoginEnabled: bool
     }
 
-    let AsyncExecute (credentials: IInoreaderCredentials) = async {
+    let AsyncExecute (credentials: Credentials) = async {
         let req = WebRequest.CreateHttp "https://www.inoreader.com/reader/api/0/user-info"
-        for (k, v) in credentials.GetHeaders() do
+        for (k, v) in credentials.Headers do
             req.Headers.[k] <- v
 
         use! resp = req.AsyncGetResponse()

@@ -56,3 +56,12 @@ module ClientLogin =
     let LoginAsync email password =
         AsyncLogin email password
         |> Async.StartAsTask
+
+    let AsyncLoginWithApp app email password = async {
+        let! v = AsyncLogin email password
+        return ClientLogin { app = app; auth = v }
+    }
+
+    let LoginWithAppAsync app email password =
+        AsyncLoginWithApp app email password
+        |> Async.StartAsTask
