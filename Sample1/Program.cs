@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace Sample1 {
     class Program {
-        static async Task Main(string[] args) {
-            Console.Write("Username:");
-            string username = Console.ReadLine();
-            Console.Write("Password:");
-            string password = Console.ReadLine();
+        static async Task Main() {
+            string username = "";
+            string password = "";
 
             string s = await InoreaderFs.ClientLogin.LoginAsync(username, password);
             Console.WriteLine(s);
 
-            string u = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(new InoreaderFs.Authentication.ClientLoginCredentials("999999863", "lt4J7WXD1LH3P127sC7XS7cDmiaF2lkq", s));
+            var app = new InoreaderFs.Authentication.AppCredentials("", "");
+            var c = new InoreaderFs.Authentication.ClientLoginCredentials(app, s);
+            var u = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(c);
             Console.WriteLine(u);
         }
     }

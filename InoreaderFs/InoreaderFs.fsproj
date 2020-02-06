@@ -6,9 +6,14 @@
 
   <ItemGroup>
     <Compile Include="Authentication\IInoreaderCredentials.fs" />
+    <Compile Include="Authentication\AppCredentials.fs" />
     <Compile Include="Authentication\ClientLoginCredentials.fs" />
     <Compile Include="Endpoints\UserInfo.fs" />
     <Compile Include="ClientLogin.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Json" Version="0.4.0" />
   </ItemGroup>
 
 </Project>
