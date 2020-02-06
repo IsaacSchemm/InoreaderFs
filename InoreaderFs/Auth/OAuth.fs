@@ -3,8 +3,8 @@
 open System
 open System.Net
 open System.IO
-open System.Threading.Tasks
 open FSharp.Json
+open InoreaderFs
 
 type IRefreshToken =
     inherit IBearerToken
@@ -23,17 +23,6 @@ type RefreshToken = {
 
 type OAuth(app: App) =
     let UserAgent = "InoreaderFs/0.0 (https://github.com/IsaacSchemm/InoreaderFs)"
-
-    let BuildForm (dict: seq<string * string>) =
-        let parameters = seq {
-            for k, v in dict do
-                if isNull v then
-                    failwithf "Null values in form not allowed"
-                let key = Uri.EscapeDataString k
-                let value = Uri.EscapeDataString v
-                yield sprintf "%s=%s" key value
-        }
-        String.concat "&" parameters
 
     member __.App = app
 
@@ -59,7 +48,7 @@ type OAuth(app: App) =
                     ("code", code)
                     ("redirect_uri", redirect_uri.AbsoluteUri)
                 }
-                |> BuildForm
+                |> QueryStringBuilder.BuildForm
                 |> sw.WriteAsync
                 |> Async.AwaitTask
         }
@@ -92,7 +81,7 @@ type OAuth(app: App) =
                     ("grant_type", "refresh_token")
                     ("refresh_token", refresh_token)
                 }
-                |> BuildForm
+                |> QueryStringBuilder.BuildForm
                 |> sw.WriteAsync
                 |> Async.AwaitTask
         }

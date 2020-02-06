@@ -18,7 +18,7 @@ module UserInfo =
         isMultiLoginEnabled: bool
     }
 
-    let AsyncExecute (credentials: Credentials) = async {
+    let AsyncExecute credentials = async {
         let req = new InoreaderRequest("/reader/api/0/user-info")
 
         use! resp = req.AsyncGetResponse credentials
