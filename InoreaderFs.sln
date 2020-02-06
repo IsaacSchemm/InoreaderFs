@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "InoreaderFs", "InoreaderFs\InoreaderFs.fsproj", "{C8D773F3-1600-4AED-8368-24CB58882B37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample1", "Sample1\Sample1.csproj", "{39288254-4054-4254-9526-A1EB8DF64FD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5301CB8F-29AA-48B4-AF22-5ADD172C0827}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8D773F3-1600-4AED-8368-24CB58882B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D773F3-1600-4AED-8368-24CB58882B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D773F3-1600-4AED-8368-24CB58882B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D773F3-1600-4AED-8368-24CB58882B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39288254-4054-4254-9526-A1EB8DF64FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39288254-4054-4254-9526-A1EB8DF64FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39288254-4054-4254-9526-A1EB8DF64FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39288254-4054-4254-9526-A1EB8DF64FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D70FF3C0-292B-460D-81F1-4E74FCA66649}
+	EndGlobalSection
+EndGlobal

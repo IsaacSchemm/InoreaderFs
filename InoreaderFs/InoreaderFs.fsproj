@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Authentication\IInoreaderCredentials.fs" />
+    <Compile Include="Authentication\ClientLoginCredentials.fs" />
+    <Compile Include="Endpoints\UserInfo.fs" />
+    <Compile Include="ClientLogin.fs" />
+  </ItemGroup>
+
+</Project>
