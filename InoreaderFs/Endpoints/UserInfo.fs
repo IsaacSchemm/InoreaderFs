@@ -1,10 +1,10 @@
 ﻿namespace InoreaderFs.Endpoints
 
 open System
-open System.Net
 open System.IO
 open FSharp.Json
 open InoreaderFs
+open InoreaderFs.Auth
 
 module UserInfo =
     type Response = {
@@ -19,11 +19,9 @@ module UserInfo =
     }
 
     let AsyncExecute (credentials: Credentials) = async {
-        let req = WebRequest.CreateHttp "https://www.inoreader.com/reader/api/0/user-info"
-        for (k, v) in credentials.Headers do
-            req.Headers.[k] <- v
+        let req = new InoreaderRequest("/reader/api/0/user-info")
 
-        use! resp = req.AsyncGetResponse()
+        use! resp = req.AsyncGetResponse credentials
         use respStream = resp.GetResponseStream()
         use sr = new StreamReader(respStream)
 

@@ -1,4 +1,4 @@
-﻿namespace InoreaderFs
+﻿namespace InoreaderFs.Auth
 
 type App = {
     appId: string

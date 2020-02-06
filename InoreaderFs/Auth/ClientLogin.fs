@@ -1,4 +1,4 @@
-﻿namespace InoreaderFs
+﻿namespace InoreaderFs.Auth
 
 open System.Net
 open System.IO

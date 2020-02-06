@@ -1,34 +1,25 @@
-﻿namespace InoreaderFs
+﻿namespace InoreaderFs.Auth
 
 open System
 open System.Net
 open System.IO
+open System.Threading.Tasks
 open FSharp.Json
 
 type IRefreshToken =
     inherit IBearerToken
     abstract member RefreshToken: string
 
-type IRefreshTokenFull =
-    inherit IRefreshToken
-    abstract member ExpiresAt: DateTimeOffset
-    abstract member Scopes: string seq
-
-type IOAuth =
-    abstract member AsyncRefresh: string -> Async<IRefreshTokenFull>
-
-type TokenResponse = {
+type RefreshToken = {
   access_token: string
   token_type: string
   expires_in: int
   refresh_token: string
   scope: string
 } with
-    interface IRefreshTokenFull with
+    interface IRefreshToken with
         member this.AccessToken = this.access_token
-        member this.ExpiresAt = DateTimeOffset.UtcNow.AddSeconds (float this.expires_in)
         member this.RefreshToken = this.refresh_token
-        member this.Scopes = this.scope.Split(' ') :> seq<string>
 
 type OAuth(app: App) =
     let UserAgent = "InoreaderFs/0.0 (https://github.com/IsaacSchemm/InoreaderFs)"
@@ -76,10 +67,10 @@ type OAuth(app: App) =
         use! resp = req.AsyncGetResponse()
         use sr = new StreamReader(resp.GetResponseStream())
         let! json = sr.ReadToEndAsync() |> Async.AwaitTask
-        let obj = Json.deserialize<TokenResponse> json
+        let obj = Json.deserialize<RefreshToken> json
         if obj.token_type <> "Bearer" then
             failwithf "token_type was not Bearer"
-        return obj :> IRefreshTokenFull
+        return obj
     }
 
     member __.AsyncRefresh (refresh_token: string) = async {
@@ -109,16 +100,13 @@ type OAuth(app: App) =
         use! resp = req.AsyncGetResponse()
         use sr = new StreamReader(resp.GetResponseStream())
         let! json = sr.ReadToEndAsync() |> Async.AwaitTask
-        let obj = Json.deserialize<TokenResponse> json
+        let obj = Json.deserialize<RefreshToken> json
         if obj.token_type <> "Bearer" then
             failwithf "token_type was not Bearer"
-        return obj :> IRefreshTokenFull
+        return obj
     }
 
     member this.GetTokenAsync code redirect_uri =
         this.AsyncGetToken code redirect_uri |> Async.StartAsTask
     member this.RefreshAsync refresh_token =
         this.AsyncRefresh refresh_token |> Async.StartAsTask
-
-    interface IOAuth with
-        member this.AsyncRefresh refresh_token = this.AsyncRefresh refresh_token
