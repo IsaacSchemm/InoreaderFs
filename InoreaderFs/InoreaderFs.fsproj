@@ -13,7 +13,8 @@
     <Compile Include="Auth\ClientLogin.fs" />
     <Compile Include="InoreaderRequest.fs" />
     <Compile Include="Endpoints\UserInfo.fs" />
-    <Compile Include="Endpoints\QuickAdd.fs" />
+    <Compile Include="Endpoints\AddSubscription.fs" />
+    <Compile Include="Endpoints\EditSubscription.fs" />
   </ItemGroup>
 
   <ItemGroup>

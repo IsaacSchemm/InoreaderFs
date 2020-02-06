@@ -1,12 +1,10 @@
 ﻿namespace InoreaderFs.Endpoints
 
-open System
 open System.IO
 open FSharp.Json
 open InoreaderFs
-open InoreaderFs.Auth
 
-module QuickAdd =
+module AddSubscription =
     type Response = {
         query: string
         numResults: int
