@@ -2,7 +2,9 @@
 
 open System
 
-module internal QueryStringBuilder =
+module internal Shared =
+    let UserAgent = "InoreaderFs/0.0 (https://github.com/IsaacSchemm/InoreaderFs)"
+
     let BuildForm (dict: seq<string * string>) =
         let parameters = seq {
             for k, v in dict do

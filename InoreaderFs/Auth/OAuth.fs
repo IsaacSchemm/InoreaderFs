@@ -6,13 +6,16 @@ open System.IO
 open FSharp.Json
 open InoreaderFs
 
+/// An object that has an access token for the Inoreader API.
 type IBearerToken =
     abstract member AccessToken: string
 
+/// An object that has access and refresh tokens for the Inoreader API.
 type IRefreshToken =
     inherit IBearerToken
     abstract member RefreshToken: string
 
+/// An Inoreader API token returned from the OAuth2 "token" endpoint.
 type RefreshToken = {
   access_token: string
   token_type: string
@@ -24,11 +27,12 @@ type RefreshToken = {
         member this.AccessToken = this.access_token
         member this.RefreshToken = this.refresh_token
 
+/// A class for getting Inoreader API tokens via OAuth2.
 type OAuth(app: App) =
-    let UserAgent = "InoreaderFs/0.0 (https://github.com/IsaacSchemm/InoreaderFs)"
-
+    /// The Inoreader app ID and key.
     member __.App = app
 
+    /// Gets a token from the server, given a code from the OAuth2 authorization code flow.
     member __.AsyncGetToken (code: string) (redirect_uri: Uri) = async {
         if isNull code then
             nullArg "code"
@@ -36,7 +40,7 @@ type OAuth(app: App) =
             nullArg "redirect_uri"
 
         let req = WebRequest.CreateHttp "https://www.inoreader.com/oauth2/token"
-        req.UserAgent <- UserAgent
+        req.UserAgent <- Shared.UserAgent
         req.Method <- "POST"
         req.ContentType <- "application/x-www-form-urlencoded"
 
@@ -51,7 +55,7 @@ type OAuth(app: App) =
                     ("code", code)
                     ("redirect_uri", redirect_uri.AbsoluteUri)
                 }
-                |> QueryStringBuilder.BuildForm
+                |> Shared.BuildForm
                 |> sw.WriteAsync
                 |> Async.AwaitTask
         }
@@ -65,12 +69,17 @@ type OAuth(app: App) =
         return obj
     }
 
+    /// Gets a token from the server, given a code from the OAuth2 authorization code flow.
+    member this.GetTokenAsync code redirect_uri =
+        this.AsyncGetToken code redirect_uri |> Async.StartAsTask
+
+    /// Uses a refresh token to get a new set of tokens from the server.
     member __.AsyncRefresh (refresh_token: string) = async {
         if isNull refresh_token then
             nullArg "refresh_token"
 
         let req = WebRequest.CreateHttp "https://www.inoreader.com/oauth2/token"
-        req.UserAgent <- UserAgent
+        req.UserAgent <- Shared.UserAgent
         req.Method <- "POST"
         req.ContentType <- "application/x-www-form-urlencoded"
             
@@ -84,7 +93,7 @@ type OAuth(app: App) =
                     ("grant_type", "refresh_token")
                     ("refresh_token", refresh_token)
                 }
-                |> QueryStringBuilder.BuildForm
+                |> Shared.BuildForm
                 |> sw.WriteAsync
                 |> Async.AwaitTask
         }
@@ -98,7 +107,6 @@ type OAuth(app: App) =
         return obj
     }
 
-    member this.GetTokenAsync code redirect_uri =
-        this.AsyncGetToken code redirect_uri |> Async.StartAsTask
+    /// Uses a refresh token to get a new set of tokens from the server.
     member this.RefreshAsync refresh_token =
         this.AsyncRefresh refresh_token |> Async.StartAsTask

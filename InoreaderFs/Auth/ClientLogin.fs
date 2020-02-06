@@ -3,19 +3,25 @@
 open System.Net
 open System.IO
 open System
+open InoreaderFs
 
+/// An exception thrown when the ClientLogin module tries and fails to handle an HTTP error.
 type ClientLoginException(message: string, body: string) =
     inherit Exception(message)
 
     member __.Body = body
 
+/// An object that stores an Auth token from the deprecated ClientLogin flow.
 type ClientLoginAuth = ClientLoginAuth of string
 
+/// Implements the deprecated ClientLogin flow of the Inoreader API.
 module ClientLogin =
+    /// Acquires an Auth token from the server.
     let AsyncLogin email password = async {
         let req = WebRequest.CreateHttp "https://www.inoreader.com/accounts/ClientLogin"
         req.Method <- "POST"
         req.ContentType <- "application/x-www-form-urlencoded"
+        req.UserAgent <- Shared.UserAgent
 
         do! async {
             use! reqStream = req.GetRequestStreamAsync() |> Async.AwaitTask
@@ -55,6 +61,7 @@ module ClientLogin =
             | None -> raise (new ClientLoginException("No Auth= in response", body))
     }
 
+    /// Acquires an Auth token from the server.
     let LoginAsync email password =
         AsyncLogin email password
         |> Async.StartAsTask
