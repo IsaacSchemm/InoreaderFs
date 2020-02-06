@@ -9,6 +9,8 @@ type ClientLoginException(message: string, body: string) =
 
     member __.Body = body
 
+type ClientLoginAuth = ClientLoginAuth of string
+
 module ClientLogin =
     let AsyncLogin email password = async {
         let req = WebRequest.CreateHttp "https://www.inoreader.com/accounts/ClientLogin"
@@ -49,19 +51,10 @@ module ClientLogin =
             |> Seq.tryHead
         return
             match auth with
-            | Some v -> v
+            | Some v -> ClientLoginAuth v
             | None -> raise (new ClientLoginException("No Auth= in response", body))
     }
 
     let LoginAsync email password =
         AsyncLogin email password
-        |> Async.StartAsTask
-
-    let AsyncLoginWithApp app email password = async {
-        let! v = AsyncLogin email password
-        return ClientLogin { app = app; auth = v }
-    }
-
-    let LoginWithAppAsync app email password =
-        AsyncLoginWithApp app email password
         |> Async.StartAsTask

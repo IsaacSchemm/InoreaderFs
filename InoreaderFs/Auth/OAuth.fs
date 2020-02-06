@@ -6,6 +6,9 @@ open System.IO
 open FSharp.Json
 open InoreaderFs
 
+type IBearerToken =
+    abstract member AccessToken: string
+
 type IRefreshToken =
     inherit IBearerToken
     abstract member RefreshToken: string

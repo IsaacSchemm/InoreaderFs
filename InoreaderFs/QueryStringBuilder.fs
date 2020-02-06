@@ -2,7 +2,7 @@
 
 open System
 
-module QueryStringBuilder =
+module internal QueryStringBuilder =
     let BuildForm (dict: seq<string * string>) =
         let parameters = seq {
             for k, v in dict do

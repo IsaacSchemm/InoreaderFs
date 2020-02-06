@@ -6,11 +6,12 @@
 
   <ItemGroup>
     <Compile Include="QueryStringBuilder.fs" />
-    <Compile Include="Auth\Credentials.fs" />
+    <Compile Include="Auth\App.fs" />
     <Compile Include="Auth\OAuth.fs" />
     <Compile Include="Auth\IAutoRefreshToken.fs" />
     <Compile Include="Auth\TokenTools.fs" />
     <Compile Include="Auth\ClientLogin.fs" />
+    <Compile Include="Auth\Credentials.fs" />
     <Compile Include="InoreaderRequest.fs" />
     <Compile Include="Endpoints\UserInfo.fs" />
     <Compile Include="Endpoints\AddSubscription.fs" />
