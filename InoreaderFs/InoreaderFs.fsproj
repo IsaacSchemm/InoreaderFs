@@ -8,6 +8,7 @@
     <Compile Include="Authentication\IInoreaderCredentials.fs" />
     <Compile Include="Authentication\AppCredentials.fs" />
     <Compile Include="Authentication\ClientLoginCredentials.fs" />
+    <Compile Include="Authentication\BearerToken.fs" />
     <Compile Include="Endpoints\UserInfo.fs" />
     <Compile Include="ClientLogin.fs" />
   </ItemGroup>
