@@ -34,7 +34,7 @@ module SubscriptionList =
         use sr = new StreamReader(respStream)
 
         let! json = sr.ReadToEndAsync() |> Async.AwaitTask
-        return Json.deserializeEx<Response> (JsonConfig.create(allowUntyped = true)) json
+        return Json.deserialize<Response> json
     }
 
     let ExecuteAsync credentials =

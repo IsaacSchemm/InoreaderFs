@@ -18,6 +18,8 @@
     <Compile Include="Endpoints\EditSubscription.fs" />
     <Compile Include="Endpoints\UnreadCount.fs" />
     <Compile Include="Endpoints\SubscriptionList.fs" />
+    <Compile Include="Endpoints\TagList.fs" />
+    <Compile Include="Endpoints\StreamContents.fs" />
   </ItemGroup>
 
   <ItemGroup>
