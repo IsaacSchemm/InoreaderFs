@@ -112,7 +112,6 @@ module StreamContents =
     let AsyncExecute credentials (o: Request) = async {
         let qs = o.GetParameters() |> Shared.BuildForm
         let req = new InoreaderRequest(sprintf "/reader/api/0/stream/contents?%s" qs)
-        req.ContentType <- Some "application/x-www-form-urlencoded"
 
         use! resp = req.AsyncGetResponse credentials
         use respStream = resp.GetResponseStream()

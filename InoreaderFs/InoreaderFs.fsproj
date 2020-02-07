@@ -21,6 +21,8 @@
     <Compile Include="Endpoints\TagList.fs" />
     <Compile Include="Endpoints\StreamContents.fs" />
     <Compile Include="Endpoints\ItemIds.fs" />
+    <Compile Include="Endpoints\StreamPreferencesList.fs" />
+    <Compile Include="Endpoints\StreamPreferencesSet.fs" />
   </ItemGroup>
 
   <ItemGroup>
