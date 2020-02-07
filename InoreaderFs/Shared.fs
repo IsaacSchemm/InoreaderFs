@@ -15,3 +15,6 @@ module internal Shared =
                 yield sprintf "%s=%s" key value
         }
         String.concat "&" parameters
+
+    let ToUnixTimeMicroseconds (ts: DateTimeOffset) =
+        (ts - DateTimeOffset.FromUnixTimeMilliseconds 0L).Ticks / 10L

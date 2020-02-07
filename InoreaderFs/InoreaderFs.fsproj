@@ -26,6 +26,7 @@
     <Compile Include="Endpoints\RenameTag.fs" />
     <Compile Include="Endpoints\DeleteTag.fs" />
     <Compile Include="Endpoints\EditTag.fs" />
+    <Compile Include="Endpoints\MarkAllAsRead.fs" />
   </ItemGroup>
 
   <ItemGroup>
