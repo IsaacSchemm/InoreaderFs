@@ -23,6 +23,9 @@
     <Compile Include="Endpoints\ItemIds.fs" />
     <Compile Include="Endpoints\StreamPreferencesList.fs" />
     <Compile Include="Endpoints\StreamPreferencesSet.fs" />
+    <Compile Include="Endpoints\RenameTag.fs" />
+    <Compile Include="Endpoints\DeleteTag.fs" />
+    <Compile Include="Endpoints\EditTag.fs" />
   </ItemGroup>
 
   <ItemGroup>
