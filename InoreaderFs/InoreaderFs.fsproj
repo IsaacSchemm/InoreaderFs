@@ -17,6 +17,7 @@
     <Compile Include="Endpoints\AddSubscription.fs" />
     <Compile Include="Endpoints\EditSubscription.fs" />
     <Compile Include="Endpoints\UnreadCount.fs" />
+    <Compile Include="Endpoints\SubscriptionList.fs" />
   </ItemGroup>
 
   <ItemGroup>
