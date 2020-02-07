@@ -9,6 +9,7 @@ module ItemIds =
     type Order = OldestFirst = 1 | NewestFirst = 2
 
     type Request() =
+        member val StreamId: string = null with get, set
         member val Number = 20 with get, set
         member val Order = Order.NewestFirst with get, set
         member val StartTime = Nullable<DateTimeOffset>() with get, set
@@ -17,10 +18,11 @@ module ItemIds =
         member val IncludeStarred = false with get, set
         member val IncludeLike = false with get, set
         member val Continuation: string = null with get, set
-        member val StreamId: string = null with get, set
         member val IncludeAllDirectStreamIds = true with get, set
 
         member this.GetParameters() = seq {
+            if not (isNull this.StreamId) then
+                ("s", this.StreamId)
             ("n", sprintf "%d" this.Number)
             if this.Order = Order.OldestFirst then
                 ("r", "o")
@@ -36,8 +38,6 @@ module ItemIds =
                 ("it", "user/-/state/com.google/like")
             if not (isNull this.Continuation) then
                 ("c", this.Continuation)
-            if not (isNull this.StreamId) then
-                ("s", this.StreamId)
             if not this.IncludeAllDirectStreamIds then
                 ("includeAllDirectStreamIds", "false")
         }

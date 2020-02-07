@@ -8,7 +8,8 @@ open InoreaderFs
 module StreamContents =
     type Order = OldestFirst = 1 | NewestFirst = 2
 
-    type RequestOptions() =
+    type Request() =
+        member val StreamId: string = null with get, set
         member val Number = 20 with get, set
         member val Order = Order.NewestFirst with get, set
         member val StartTime = Nullable<DateTimeOffset>() with get, set
@@ -21,6 +22,8 @@ module StreamContents =
         member val IncludeAllDirectStreamIds = true with get, set
 
         member this.GetParameters() = seq {
+            if not (isNull this.StreamId) then
+                ("s", this.StreamId)
             ("n", sprintf "%d" this.Number)
             if this.Order = Order.OldestFirst then
                 ("r", "o")
@@ -106,9 +109,9 @@ module StreamContents =
         member this.GetContinuation() =
             Option.toObj this.continuation
 
-    let AsyncExecute credentials streamId (o: RequestOptions) = async {
+    let AsyncExecute credentials (o: Request) = async {
         let qs = o.GetParameters() |> Shared.BuildForm
-        let req = new InoreaderRequest(sprintf "/reader/api/0/stream/contents/%s?%s" (Uri.EscapeDataString streamId) qs)
+        let req = new InoreaderRequest(sprintf "/reader/api/0/stream/contents?%s" qs)
         req.ContentType <- Some "application/x-www-form-urlencoded"
 
         use! resp = req.AsyncGetResponse credentials
@@ -119,6 +122,6 @@ module StreamContents =
         return Json.deserialize<Response> json
     }
 
-    let ExecuteAsync credentials streamId o =
-        AsyncExecute credentials streamId o
+    let ExecuteAsync credentials o =
+        AsyncExecute credentials o
         |> Async.StartAsTask
