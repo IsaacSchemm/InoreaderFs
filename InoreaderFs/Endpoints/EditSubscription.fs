@@ -27,7 +27,7 @@ module EditSubscription =
         req.ContentType <- Some "application/x-www-form-urlencoded"
         req.Body <-
             o.GetParameters()
-            |> QueryStringBuilder.BuildForm
+            |> Shared.BuildForm
             |> System.Text.Encoding.UTF8.GetBytes
             |> Some
 

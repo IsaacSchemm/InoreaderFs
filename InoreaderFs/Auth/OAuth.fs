@@ -27,13 +27,10 @@ type RefreshToken = {
         member this.AccessToken = this.access_token
         member this.RefreshToken = this.refresh_token
 
-/// A class for getting Inoreader API tokens via OAuth2.
-type OAuth(app: App) =
-    /// The Inoreader app ID and key.
-    member __.App = app
-
+/// A module for getting Inoreader API tokens via OAuth2.
+module OAuth =
     /// Gets a token from the server, given a code from the OAuth2 authorization code flow.
-    member __.AsyncGetToken (code: string) (redirect_uri: Uri) = async {
+    let AsyncGetToken (app: App) (code: string) (redirect_uri: Uri) = async {
         if isNull code then
             nullArg "code"
         if isNull redirect_uri then
@@ -70,11 +67,11 @@ type OAuth(app: App) =
     }
 
     /// Gets a token from the server, given a code from the OAuth2 authorization code flow.
-    member this.GetTokenAsync code redirect_uri =
-        this.AsyncGetToken code redirect_uri |> Async.StartAsTask
+    let GetTokenAsync app code redirect_uri =
+        AsyncGetToken app code redirect_uri |> Async.StartAsTask
 
     /// Uses a refresh token to get a new set of tokens from the server.
-    member __.AsyncRefresh (refresh_token: string) = async {
+    let AsyncRefresh (app: App) (refresh_token: string) = async {
         if isNull refresh_token then
             nullArg "refresh_token"
 
@@ -108,5 +105,5 @@ type OAuth(app: App) =
     }
 
     /// Uses a refresh token to get a new set of tokens from the server.
-    member this.RefreshAsync refresh_token =
-        this.AsyncRefresh refresh_token |> Async.StartAsTask
+    let RefreshAsync app refresh_token =
+        AsyncRefresh app refresh_token |> Async.StartAsTask

@@ -8,8 +8,7 @@ module TokenTools =
     let AsyncRefresh (t: IAutoRefreshToken) = async {
         do! RefreshLock.WaitAsync() |> Async.AwaitTask
         try
-            let oAuth = new OAuth(t.App)
-            let! newToken = oAuth.AsyncRefresh t.RefreshToken
+            let! newToken = OAuth.AsyncRefresh t.App t.RefreshToken
             do! t.UpdateTokenAsync newToken |> Async.AwaitTask
         finally
             RefreshLock.Release() |> ignore

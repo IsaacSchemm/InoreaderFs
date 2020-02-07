@@ -20,7 +20,7 @@ module AddSubscription =
             seq {
                 ("quickadd", feedId)
             }
-            |> QueryStringBuilder.BuildForm
+            |> Shared.BuildForm
             |> System.Text.Encoding.UTF8.GetBytes
             |> Some
 

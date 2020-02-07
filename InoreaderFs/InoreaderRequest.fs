@@ -5,9 +5,9 @@ open System.Net
 open InoreaderFs.Auth
 open System.IO
 
-type InoreaderRequest(path: string) =
+type internal InoreaderRequest(path: string) =
     let InoreaderUri = new Uri("https://www.inoreader.com/")
-    let UserAgent = "InoreaderFs/0.0 (https://github.com/IsaacSchemm/InoreaderFs)"
+    let UserAgent = Shared.UserAgent
 
     let Is403 (response: WebResponse) =
         match response with
