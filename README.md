@@ -28,6 +28,21 @@ Unsupported endpoints:
 Both OAuth 2.0 and ClientLogin are supported.
 (If you use OAuth, you'll have to handle the redirect leg yourself.)
 
+Since two types of authentication are supported, InoreaderFs uses a
+[discriminated union](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions)
+as the first parameter to the static methods in the `InoreaderFs.Endpoints`
+namespace that allow access to the API. The `InoreaderFs.Auth.Credentials`
+union has two cases:
+
+* **OAuth** - wraps an `InoreaderFs.Auth.OAuth.IAccessToken`
+* **ClientLogin** - wraps an `InoreaderFs.Auth.App` and a string acquired from
+  `InoreaderFs.Auth.ClientLogin.ClientLoginHandler`
+
+To use OAuth, you'll need to implement the `IAccessToken` interface yourself.
+However, you can take advantage of the opportunity to also implement
+`InoreaderFs.Auth.OAuth.IAutoRefreshToken`, which will let InoreaderFs refresh
+your tokens automatically for you when they expire.
+
 ### OAuth (access token only)
 
 	class InoreaderToken : InoreaderFs.Auth.OAuth.IAccessToken {

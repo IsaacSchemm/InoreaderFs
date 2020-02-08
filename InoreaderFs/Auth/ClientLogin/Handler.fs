@@ -54,7 +54,7 @@ module ClientLoginHandler =
             |> Seq.tryHead
         return
             match auth with
-            | Some v -> ClientLoginAuth v
+            | Some v -> v
             | None -> raise (new ClientLoginException("No Auth= in response", body))
     }
 

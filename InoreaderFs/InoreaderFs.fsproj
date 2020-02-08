@@ -11,7 +11,6 @@
     <Compile Include="Auth\OAuth\Handler.fs" />
     <Compile Include="Auth\OAuth\AutoRefresh.fs" />
     <Compile Include="Auth\OAuth\TokenTools.fs" />
-    <Compile Include="Auth\ClientLogin\Tokens.fs" />
     <Compile Include="Auth\ClientLogin\Handler.fs" />
     <Compile Include="Auth\Credentials.fs" />
     <Compile Include="InoreaderRequest.fs" />
