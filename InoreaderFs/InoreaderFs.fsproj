@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Isaac Schemm</Authors>
+    <Description>An F# / .NET library to access the Inoreader API.</Description>
+    <Copyright>(C) 2020 Isaac Schemm</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/IsaacSchemm/InoreaderFs</PackageProjectUrl>
+    <PackageTags>fsharp inoreader api</PackageTags>
+    <RepositoryUrl>https://github.com/IsaacSchemm/InoreaderFs</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

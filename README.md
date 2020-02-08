@@ -74,7 +74,7 @@ your tokens automatically for you when they expire.
 
 	static async Task Main() {
 		var wrapper = new TokenWrapper();
-		(this.AccessToken, this.RefreshToken) = await YourBackingStore.GetTokensAsync();
+		(wrapper.AccessToken, wrapper.RefreshToken) = await YourBackingStore.GetTokensAsync();
 
 		var credentials = InoreaderFs.Auth.Credentials.NewOAuth(wrapper);
 
@@ -88,7 +88,7 @@ your tokens automatically for you when they expire.
 		var app = new InoreaderFs.Auth.App("app ID", "app key");
 		var auth = await InoreaderFs.Auth.ClientLogin.ClientLoginHandler.LoginAsync("email", "password");
 
-		var credentials = InoreaderFs.Auth.Credentials.NewClientLogin(app, auith);
+		var credentials = InoreaderFs.Auth.Credentials.NewClientLogin(app, au	th);
 
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
 		Console.WriteLine(user);
