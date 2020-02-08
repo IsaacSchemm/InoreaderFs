@@ -88,7 +88,7 @@ your tokens automatically for you when they expire.
 		var app = new InoreaderFs.Auth.App("app ID", "app key");
 		var auth = await InoreaderFs.Auth.ClientLogin.ClientLoginHandler.LoginAsync("email", "password");
 
-		var credentials = InoreaderFs.Auth.Credentials.NewClientLogin(app, au	th);
+		var credentials = InoreaderFs.Auth.Credentials.NewClientLogin(app, auth);
 
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
 		Console.WriteLine(user);
