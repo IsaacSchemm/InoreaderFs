@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{746CE4AF-2213-4D94-8F17-0C9318335684}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Sample2.My.MyApplication</StartupObject>
-    <RootNamespace>Sample2</RootNamespace>
-    <AssemblyName>Sample2</AssemblyName>
+    <StartupObject>InoreaderSample1.My.MyApplication</StartupObject>
+    <RootNamespace>InoreaderSample1</RootNamespace>
+    <AssemblyName>InoreaderSample1</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Sample2.xml</DocumentationFile>
+    <DocumentationFile>InoreaderSample1.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Sample2.xml</DocumentationFile>
+    <DocumentationFile>InoreaderSample1.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>

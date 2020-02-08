@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "InoreaderFs", "InoreaderFs\InoreaderFs.fsproj", "{C8D773F3-1600-4AED-8368-24CB58882B37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample1", "Sample1\Sample1.csproj", "{39288254-4054-4254-9526-A1EB8DF64FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InoreaderSample2", "InoreaderSample2\InoreaderSample2.csproj", "{39288254-4054-4254-9526-A1EB8DF64FD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5301CB8F-29AA-48B4-AF22-5ADD172C0827}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sample2", "Sample2\Sample2.vbproj", "{746CE4AF-2213-4D94-8F17-0C9318335684}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "InoreaderSample1", "InoreaderSample1\InoreaderSample1.vbproj", "{746CE4AF-2213-4D94-8F17-0C9318335684}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "InoreaderSample3", "InoreaderSample3\InoreaderSample3.fsproj", "{22443C09-17C5-4DC2-824A-D650EB0948ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{746CE4AF-2213-4D94-8F17-0C9318335684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{746CE4AF-2213-4D94-8F17-0C9318335684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{746CE4AF-2213-4D94-8F17-0C9318335684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22443C09-17C5-4DC2-824A-D650EB0948ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22443C09-17C5-4DC2-824A-D650EB0948ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22443C09-17C5-4DC2-824A-D650EB0948ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22443C09-17C5-4DC2-824A-D650EB0948ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
