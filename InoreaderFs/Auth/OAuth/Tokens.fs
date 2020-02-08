@@ -10,7 +10,7 @@ type IRefreshToken =
     abstract member RefreshToken: string
 
 /// An Inoreader API token returned from the OAuth2 "token" endpoint.
-type RefreshToken = {
+type RefreshTokenResponse = {
   access_token: string
   token_type: string
   expires_in: int

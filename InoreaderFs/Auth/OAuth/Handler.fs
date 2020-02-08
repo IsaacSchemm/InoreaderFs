@@ -40,7 +40,7 @@ module OAuthHandler =
         use! resp = req.AsyncGetResponse()
         use sr = new StreamReader(resp.GetResponseStream())
         let! json = sr.ReadToEndAsync() |> Async.AwaitTask
-        let obj = Json.deserialize<RefreshToken> json
+        let obj = Json.deserialize<RefreshTokenResponse> json
         if obj.token_type <> "Bearer" then
             failwithf "token_type was not Bearer"
         return obj
@@ -78,7 +78,7 @@ module OAuthHandler =
         use! resp = req.AsyncGetResponse()
         use sr = new StreamReader(resp.GetResponseStream())
         let! json = sr.ReadToEndAsync() |> Async.AwaitTask
-        let obj = Json.deserialize<RefreshToken> json
+        let obj = Json.deserialize<RefreshTokenResponse> json
         if obj.token_type <> "Bearer" then
             failwithf "token_type was not Bearer"
         return obj

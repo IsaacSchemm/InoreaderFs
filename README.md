@@ -44,6 +44,11 @@ Both OAuth 2.0 and ClientLogin are supported.
 
 ### OAuth (handle refresh tokens automatically)
 
+	static class YourBackend {
+		Task<InoReaderToken> LoadTokensAsync();
+		Task SaveTokensAsync(InoReaderToken token);
+	}
+
 	class InoreaderToken : InoreaderFs.Auth.OAuth.IAutoRefreshToken {
 		public App App => new InoreaderFs.Auth.App("app ID", "app key");
 
@@ -58,8 +63,7 @@ Both OAuth 2.0 and ClientLogin are supported.
 	}
 
 	static async Task Main() {
-		var token = new InoreaderToken();
-		await YourBackend.LoadTokensAsync(token);
+		var token = await YourBackend.LoadTokensAsync(token);
 
 		var credentials = InoreaderFs.Auth.Credentials.NewOAuth(token);
 

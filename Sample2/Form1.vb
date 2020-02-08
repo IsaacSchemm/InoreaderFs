@@ -22,10 +22,17 @@ Public Class Form1
         End Get
     End Property
 
-    Public Function UpdateTokenAsync(Param As IRefreshToken) As Task Implements IAutoRefreshToken.UpdateTokenAsync
-        TextBox3.Text = Param.AccessToken
-        TextBox4.Text = Param.RefreshToken
-        Return Task.CompletedTask
+    Public Async Function UpdateTokenAsync(Param As IRefreshToken) As Task Implements IAutoRefreshToken.UpdateTokenAsync
+        Dim asyncResult = BeginInvoke(
+            Sub()
+                TextBox3.Text = Param.AccessToken
+                TextBox4.Text = Param.RefreshToken
+            End Sub)
+        Await Task.Factory.FromAsync(
+            asyncResult,
+            Sub(x)
+                EndInvoke(x)
+            End Sub)
     End Function
 
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
