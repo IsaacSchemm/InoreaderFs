@@ -1,4 +1,4 @@
-#InoreaderFs
+# InoreaderFs
 
 An F# / .NET library to access the [Inoreader API.](https://www.inoreader.com/developers/)
 
