@@ -1,12 +1,12 @@
 ﻿namespace InoreaderFs.Auth.OAuth
 
 /// An object that has an access token for the Inoreader API.
-type IBearerToken =
+type IAccessToken =
     abstract member AccessToken: string
 
 /// An object that has access and refresh tokens for the Inoreader API.
 type IRefreshToken =
-    inherit IBearerToken
+    inherit IAccessToken
     abstract member RefreshToken: string
 
 /// An Inoreader API token returned from the OAuth2 "token" endpoint.

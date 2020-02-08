@@ -20,6 +20,6 @@ module TokenTools =
         |> Async.StartAsTask
 
     let NoRefresh (t: IRefreshToken) = {
-        new IBearerToken with
+        new IAccessToken with
             member __.AccessToken = t.AccessToken
     }

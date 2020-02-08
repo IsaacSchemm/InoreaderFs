@@ -16,7 +16,7 @@ Public Class Form1
         End Get
     End Property
 
-    Public ReadOnly Property AccessToken As String Implements IBearerToken.AccessToken
+    Public ReadOnly Property AccessToken As String Implements IAccessToken.AccessToken
         Get
             Return TextBox3.Text
         End Get
@@ -29,7 +29,7 @@ Public Class Form1
     End Function
 
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim credentials = InoreaderFs.Auth.Credentials.NewBearer(Me)
+        Dim credentials = InoreaderFs.Auth.Credentials.NewOAuth(Me)
         Dim user = Await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials)
         MsgBox(user.userName)
     End Sub

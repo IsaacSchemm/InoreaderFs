@@ -45,10 +45,10 @@ type InoreaderRequest(path: string) =
         with
             | :? WebException as ex when Is403 ex.Response ->
                 match credentials with
-                | Bearer (:? IAutoRefreshToken as auto) ->
+                | OAuth (:? IAutoRefreshToken as auto) ->
                     do! TokenTools.AsyncRefresh auto
                     let newToken = TokenTools.NoRefresh auto
-                    return! this.AsyncGetResponse (Bearer newToken)
+                    return! this.AsyncGetResponse (OAuth newToken)
                 | _ ->
                     return raise (new Exception("Unexpected 403 error when using non-bearer token", ex))
     }
