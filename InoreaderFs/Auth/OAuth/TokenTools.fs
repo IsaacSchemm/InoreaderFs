@@ -1,14 +1,15 @@
-﻿namespace InoreaderFs.Auth
+﻿namespace InoreaderFs.Auth.OAuth
 
 open System.Threading
 
+/// Internal utility functions for working with OAuth tokens.
 module TokenTools =
     let private RefreshLock = new SemaphoreSlim(1, 1)
 
     let AsyncRefresh (t: IAutoRefreshToken) = async {
         do! RefreshLock.WaitAsync() |> Async.AwaitTask
         try
-            let! newToken = OAuth.AsyncRefresh t.App t.RefreshToken
+            let! newToken = OAuthHandler.AsyncRefresh t.App t.RefreshToken
             do! t.UpdateTokenAsync newToken |> Async.AwaitTask
         finally
             RefreshLock.Release() |> ignore

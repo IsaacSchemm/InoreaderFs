@@ -3,9 +3,10 @@
 open System
 open System.Net
 open InoreaderFs.Auth
+open InoreaderFs.Auth.OAuth
 open System.IO
 
-type internal InoreaderRequest(path: string) =
+type InoreaderRequest(path: string) =
     let InoreaderUri = new Uri("https://www.inoreader.com/")
     let UserAgent = Shared.UserAgent
 
@@ -51,3 +52,7 @@ type internal InoreaderRequest(path: string) =
                 | _ ->
                     return raise (new Exception("Unexpected 403 error when using non-bearer token", ex))
     }
+
+    member this.GetResponseAsync credentials =
+        this.AsyncGetResponse credentials
+        |> Async.StartAsTask

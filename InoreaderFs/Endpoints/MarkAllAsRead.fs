@@ -17,11 +17,9 @@ module MarkAllAsRead =
         let req = new InoreaderRequest("/reader/api/0/mark-all-as-read")
         req.Method <- "POST"
         req.ContentType <- Some "application/x-www-form-urlencoded"
-        let m =
+        req.Body <-
             o.GetParameters()
             |> Shared.BuildForm
-        req.Body <-
-            m
             |> System.Text.Encoding.UTF8.GetBytes
             |> Some
 

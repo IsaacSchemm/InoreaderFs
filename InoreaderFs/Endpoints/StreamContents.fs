@@ -81,9 +81,8 @@ module StreamContents =
         origin: Origin
     } with
         member this.GetTimestamp() =
-            match Int64.TryParse this.timestampUsec with
-            | (true, x) -> DateTimeOffset.FromUnixTimeMilliseconds 0L + new TimeSpan(x * 10L)
-            | _ -> DateTimeOffset.MinValue
+            Int64.Parse this.timestampUsec
+            |> Shared.FromUnixTimeMicroseconds
         member this.GetPublished() =
             DateTimeOffset.FromUnixTimeSeconds this.published
         member this.GetUpdated() =
@@ -103,9 +102,8 @@ module StreamContents =
         continuation: string option
     } with
         member this.GetUpdated() =
-            match Int64.TryParse this.updatedUsec with
-            | (true, x) -> DateTimeOffset.FromUnixTimeMilliseconds 0L + new TimeSpan(x * 10L)
-            | _ -> DateTimeOffset.MinValue
+            Int64.Parse this.updatedUsec
+            |> Shared.FromUnixTimeMicroseconds
         member this.GetContinuation() =
             Option.toObj this.continuation
 

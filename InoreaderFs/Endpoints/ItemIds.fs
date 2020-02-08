@@ -48,9 +48,8 @@ module ItemIds =
         timestampUsec: string
     } with
         member this.GetTimestamp() =
-            match Int64.TryParse this.timestampUsec with
-            | (true, x) -> DateTimeOffset.FromUnixTimeMilliseconds 0L + new TimeSpan(x * 10L)
-            | _ -> DateTimeOffset.MinValue
+            Int64.Parse this.timestampUsec
+            |> Shared.FromUnixTimeMicroseconds
 
     type Response = {
         itemRefs: ItemRef list

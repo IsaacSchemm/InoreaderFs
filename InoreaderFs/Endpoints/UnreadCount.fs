@@ -11,11 +11,11 @@ module UnreadCount =
         count: obj
         newestItemTimestampUsec: string
     } with
-        member this.CountAsInt32 =
+        member this.GetCount() =
             this.count
             |> sprintf "%O"
             |> Int32.Parse
-        member this.NewestItemTimestamp =
+        member this.GetNewestItemTimestamp() =
             match Int64.TryParse this.newestItemTimestampUsec with
             | (true, x) -> DateTimeOffset.FromUnixTimeMilliseconds(0L) + new TimeSpan(x * 10L)
             | _ -> DateTimeOffset.MinValue

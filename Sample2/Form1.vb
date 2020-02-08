@@ -1,4 +1,5 @@
 ﻿Imports InoreaderFs.Auth
+Imports InoreaderFs.Auth.OAuth
 
 Public Class Form1
     Implements IAutoRefreshToken

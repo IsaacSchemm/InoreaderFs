@@ -1,34 +1,14 @@
-﻿namespace InoreaderFs.Auth
+﻿namespace InoreaderFs.Auth.OAuth
 
 open System
 open System.Net
 open System.IO
 open FSharp.Json
 open InoreaderFs
-
-/// An object that has an access token for the Inoreader API.
-type IBearerToken =
-    abstract member AccessToken: string
-
-/// An object that has access and refresh tokens for the Inoreader API.
-type IRefreshToken =
-    inherit IBearerToken
-    abstract member RefreshToken: string
-
-/// An Inoreader API token returned from the OAuth2 "token" endpoint.
-type RefreshToken = {
-  access_token: string
-  token_type: string
-  expires_in: int
-  refresh_token: string
-  scope: string
-} with
-    interface IRefreshToken with
-        member this.AccessToken = this.access_token
-        member this.RefreshToken = this.refresh_token
+open InoreaderFs.Auth
 
 /// A module for getting Inoreader API tokens via OAuth2.
-module OAuth =
+module OAuthHandler =
     /// Gets a token from the server, given a code from the OAuth2 authorization code flow.
     let AsyncGetToken (app: App) (code: string) (redirect_uri: Uri) = async {
         if isNull code then

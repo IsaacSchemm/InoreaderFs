@@ -20,7 +20,9 @@ module SubscriptionList =
         url: string
         htmlUrl: string
         iconUrl: string
-    }
+    } with
+        member this.GetFirstItemTimestamp() =
+            Shared.FromUnixTimeMicroseconds this.firstitemmsec
 
     type Response = {
         subscriptions: Subscription list

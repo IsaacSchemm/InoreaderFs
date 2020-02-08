@@ -1,5 +1,6 @@
-﻿namespace InoreaderFs.Auth
+﻿namespace InoreaderFs.Auth.OAuth
 
+open InoreaderFs.Auth
 open System.Threading.Tasks
 
 /// An object that contains access and refresh tokens for Inoreader and

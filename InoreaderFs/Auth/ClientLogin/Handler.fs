@@ -1,4 +1,4 @@
-﻿namespace InoreaderFs.Auth
+﻿namespace InoreaderFs.Auth.ClientLogin
 
 open System.Net
 open System.IO
@@ -11,11 +11,8 @@ type ClientLoginException(message: string, body: string) =
 
     member __.Body = body
 
-/// An object that stores an Auth token from the deprecated ClientLogin flow.
-type ClientLoginAuth = ClientLoginAuth of string
-
 /// Implements the deprecated ClientLogin flow of the Inoreader API.
-module ClientLogin =
+module ClientLoginHandler =
     /// Acquires an Auth token from the server.
     let AsyncLogin email password = async {
         let req = WebRequest.CreateHttp "https://www.inoreader.com/accounts/ClientLogin"

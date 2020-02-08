@@ -16,5 +16,11 @@ module internal Shared =
         }
         String.concat "&" parameters
 
+    let TicksPerMicrosecond =
+        TimeSpan.TicksPerMillisecond / 1000L
+
+    let FromUnixTimeMicroseconds (us: int64) =
+        DateTimeOffset.FromUnixTimeMilliseconds 0L + TimeSpan.FromTicks(us * TicksPerMicrosecond)
+
     let ToUnixTimeMicroseconds (ts: DateTimeOffset) =
-        (ts - DateTimeOffset.FromUnixTimeMilliseconds 0L).Ticks / 10L
+        (ts - DateTimeOffset.FromUnixTimeMilliseconds 0L).Ticks / TicksPerMicrosecond

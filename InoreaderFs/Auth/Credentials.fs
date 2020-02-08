@@ -1,5 +1,8 @@
 ﻿namespace InoreaderFs.Auth
 
+open InoreaderFs.Auth.OAuth
+open InoreaderFs.Auth.ClientLogin
+
 /// An object that stores credentials for the Inoreader API.
 /// Either the OAuth or ClientLogin flows can be used.
 type Credentials =
