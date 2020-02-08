@@ -39,7 +39,7 @@ Both OAuth 2.0 and ClientLogin are supported.
 		var credentials = InoreaderFs.Auth.Credentials.NewOAuth(token);
 
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
-        Console.WriteLine(user);
+		Console.WriteLine(user);
 	}
 
 ### OAuth (handle refresh tokens automatically)
@@ -64,7 +64,7 @@ Both OAuth 2.0 and ClientLogin are supported.
 		var credentials = InoreaderFs.Auth.Credentials.NewOAuth(token);
 
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
-        Console.WriteLine(user);
+		Console.WriteLine(user);
 	}
 
 ### ClientLogin (deprecated)
@@ -76,5 +76,5 @@ Both OAuth 2.0 and ClientLogin are supported.
 		var credentials = InoreaderFs.Auth.Credentials.NewClientLogin(app, auith);
 
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
-        Console.WriteLine(user);
+		Console.WriteLine(user);
 	}
