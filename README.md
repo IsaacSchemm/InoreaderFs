@@ -93,3 +93,13 @@ your tokens automatically for you when they expire.
 		var user = await InoreaderFs.Endpoints.UserInfo.ExecuteAsync(credentials);
 		Console.WriteLine(user);
 	}
+
+## Error handling
+
+If you are using an `IAutoRefreshToken`, InoreaderFs will handle HTTP 403
+responses by refreshing the token (once) and trying again. The library does
+not try to handle any other HTTP errors, so you should check for `WebEception`
+errors and handle them as appropriate.
+
+See the [Inoreader API documentation](https://www.inoreader.com/developers/error-handling)
+for a list of possible error codes.

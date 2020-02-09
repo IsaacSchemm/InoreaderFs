@@ -40,17 +40,17 @@ type InoreaderRequest(path: string) =
             }
         | None -> ()
 
-        try
-            return! req.AsyncGetResponse()
-        with
-            | :? WebException as ex when Is403 ex.Response ->
-                match credentials with
-                | OAuth (:? IAutoRefreshToken as auto) ->
+        match credentials with
+        | OAuth (:? IAutoRefreshToken as auto) ->
+            try
+                return! req.AsyncGetResponse()
+            with
+                | :? WebException as ex when Is403 ex.Response ->
                     do! TokenTools.AsyncRefresh auto
                     let newToken = TokenTools.NoRefresh auto
                     return! this.AsyncGetResponse (OAuth newToken)
-                | _ ->
-                    return raise (new Exception("Unexpected 403 error when using non-auto-refreshable token", ex))
+        | _ ->
+            return! req.AsyncGetResponse()
     }
 
     member this.GetResponseAsync credentials =
