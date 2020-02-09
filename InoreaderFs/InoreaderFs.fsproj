@@ -10,8 +10,8 @@
     <PackageTags>fsharp inoreader api</PackageTags>
     <RepositoryUrl>https://github.com/IsaacSchemm/InoreaderFs</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>1.0.1: Added an "AccessToken" type for convenience</PackageReleaseNotes>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>1.1.0: Tweaked exception handling; added an "AccessToken" type for convenience</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
