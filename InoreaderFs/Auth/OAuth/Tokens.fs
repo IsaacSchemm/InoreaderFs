@@ -4,6 +4,12 @@
 type IAccessToken =
     abstract member AccessToken: string
 
+type AccessToken = {
+    AccessToken: string
+} with
+    interface IAccessToken with
+        member this.AccessToken = this.AccessToken
+
 /// An object that has access and refresh tokens for the Inoreader API.
 type IRefreshToken =
     inherit IAccessToken
@@ -11,11 +17,11 @@ type IRefreshToken =
 
 /// An Inoreader API token returned from the OAuth2 "token" endpoint.
 type RefreshTokenResponse = {
-  access_token: string
-  token_type: string
-  expires_in: int
-  refresh_token: string
-  scope: string
+    access_token: string
+    token_type: string
+    expires_in: int
+    refresh_token: string
+    scope: string
 } with
     interface IRefreshToken with
         member this.AccessToken = this.access_token

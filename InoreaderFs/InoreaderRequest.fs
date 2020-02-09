@@ -50,7 +50,7 @@ type InoreaderRequest(path: string) =
                     let newToken = TokenTools.NoRefresh auto
                     return! this.AsyncGetResponse (OAuth newToken)
                 | _ ->
-                    return raise (new Exception("Unexpected 403 error when using non-bearer token", ex))
+                    return raise (new Exception("Unexpected 403 error when using non-auto-refreshable token", ex))
     }
 
     member this.GetResponseAsync credentials =
